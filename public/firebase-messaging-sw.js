@@ -18,11 +18,32 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
+// Payload data-only: mostriamo noi la notifica (una sola, niente doppioni).
 messaging.onBackgroundMessage((payload) => {
-  const n = payload.notification || {};
-  self.registration.showNotification(n.title || "KePiante", {
-    body: n.body || "",
+  const d = payload.data || {};
+  self.registration.showNotification(d.title || "KePiante", {
+    body: d.body || "",
     icon: "/icon-192.png",
     badge: "/icon-192.png",
+    tag: d.tag || undefined,
+    data: { link: d.link || "/promemoria" },
   });
+});
+
+// Tap sulla notifica: apre l'app.
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const link =
+    (event.notification.data && event.notification.data.link) ||
+    "/promemoria";
+  event.waitUntil(
+    clients
+      .matchAll({ type: "window", includeUncontrolled: true })
+      .then((list) => {
+        for (const c of list) {
+          if (c.url.includes(link) && "focus" in c) return c.focus();
+        }
+        return clients.openWindow(link);
+      }),
+  );
 });

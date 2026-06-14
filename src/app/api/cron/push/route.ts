@@ -39,11 +39,12 @@ export async function GET(req: Request) {
         try {
           await messaging().send({
             token: data.token,
-            notification: {
+            // Solo data: la notifica la mostra il service worker (no doppioni).
+            data: {
               title: `🌱 ${r.pianta}`,
               body: `È ora: ${r.attivita}`,
+              link: "/promemoria",
             },
-            webpush: { fcmOptions: { link: "/promemoria" } },
           });
           inviate++;
         } catch {
