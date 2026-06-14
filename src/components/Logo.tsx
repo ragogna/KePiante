@@ -29,7 +29,7 @@ export default function Logo() {
       <span>
         Ke<span className="text-emerald-700">Piante</span>
       </span>
-      <span className="rounded-full bg-stone-200 px-1.5 py-0.5 text-[10px] font-medium text-stone-700">
+      <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium text-emerald-800">
         v{VERSION}
       </span>
     </span>

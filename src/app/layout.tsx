@@ -40,8 +40,8 @@ export default function RootLayout({
       lang="it"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-stone-50 text-stone-900">
-        <header className="sticky top-0 z-10 border-b border-stone-200 bg-stone-50/80 backdrop-blur">
+      <body className="min-h-full flex flex-col bg-emerald-100 text-emerald-950">
+        <header className="sticky top-0 z-10 border-b border-emerald-200 bg-emerald-100/80 backdrop-blur">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
             <Link href="/">
               <Logo />
@@ -65,7 +65,7 @@ export default function RootLayout({
         <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
           {children}
         </main>
-        <footer className="border-t border-stone-200 py-4 text-center text-xs text-stone-500">
+        <footer className="border-t border-emerald-200 py-4 text-center text-xs text-emerald-800">
           KePiante · identificazione e cura piante · foto non salvate sui server
         </footer>
       </body>

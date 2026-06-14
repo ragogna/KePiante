@@ -39,10 +39,10 @@ export default function PromemoriaPage() {
 
   if (list.length === 0) {
     return (
-      <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center">
+      <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-8 text-center">
         <CalendarClock className="mx-auto mb-3 text-emerald-600" />
         <p className="font-medium">Nessun promemoria attivo.</p>
-        <p className="mt-1 text-sm text-stone-600">
+        <p className="mt-1 text-sm text-emerald-700">
           Identifica una pianta e attiva i promemoria delle cure.
         </p>
         <Link
@@ -75,7 +75,7 @@ export default function PromemoriaPage() {
           return (
             <li
               key={p.id}
-              className="flex items-center gap-3 rounded-2xl border border-stone-200 bg-white p-3"
+              className="flex items-center gap-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-3"
             >
               {p.foto ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -91,12 +91,12 @@ export default function PromemoriaPage() {
               )}
               <div className="min-w-0 flex-1">
                 <p className="truncate font-medium">{p.pianta}</p>
-                <p className="text-sm text-stone-600">
+                <p className="text-sm text-emerald-700">
                   {p.attivita} · ogni {p.ogniGiorni}g
                 </p>
                 <span
                   className={`text-xs font-medium ${
-                    q.scaduto ? "text-amber-600" : "text-stone-600"
+                    q.scaduto ? "text-amber-600" : "text-emerald-700"
                   }`}
                 >
                   {q.testo}
@@ -119,7 +119,7 @@ export default function PromemoriaPage() {
                     ricarica();
                   }}
                   title="Elimina"
-                  className="grid h-9 w-9 place-items-center rounded-full bg-stone-100 text-stone-500 hover:bg-red-100 hover:text-red-600"
+                  className="grid h-9 w-9 place-items-center rounded-full bg-emerald-100 text-emerald-700 hover:bg-red-100 hover:text-red-600"
                 >
                   <Trash2 size={16} />
                 </button>
@@ -129,7 +129,7 @@ export default function PromemoriaPage() {
         })}
       </ul>
 
-      <p className="text-center text-xs text-stone-600">
+      <p className="text-center text-xs text-emerald-700">
         Promemoria salvati in questo browser. Le notifiche arrivano quando
         l&apos;app è aperta.
       </p>

@@ -72,7 +72,7 @@ export default function Home() {
         <>
           <div className="text-center">
             <h1 className="text-3xl font-bold tracking-tight">Che pianta è?</h1>
-            <p className="mt-1 text-stone-700">
+            <p className="mt-1 text-emerald-800">
               Scatta o carica fino a 5 foto: ricevi la scheda completa, la
               diagnosi dello stato attuale e i promemoria per le cure.
             </p>
@@ -99,14 +99,14 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => cameraRef.current?.click()}
-              className="flex flex-col items-center gap-2 rounded-2xl border border-stone-200 bg-white p-6 transition hover:border-emerald-400 hover:bg-emerald-50"
+              className="flex flex-col items-center gap-2 rounded-2xl border border-emerald-100 bg-emerald-50 p-6 transition hover:border-emerald-400 hover:bg-emerald-50"
             >
               <Camera className="text-emerald-600" />
               <span className="text-sm font-medium">Scatta foto</span>
             </button>
             <button
               onClick={() => galleriaRef.current?.click()}
-              className="flex flex-col items-center gap-2 rounded-2xl border border-stone-200 bg-white p-6 transition hover:border-emerald-400 hover:bg-emerald-50"
+              className="flex flex-col items-center gap-2 rounded-2xl border border-emerald-100 bg-emerald-50 p-6 transition hover:border-emerald-400 hover:bg-emerald-50"
             >
               <ImagePlus className="text-emerald-600" />
               <span className="text-sm font-medium">Dalla galleria</span>
@@ -126,7 +126,7 @@ export default function Home() {
                   />
                   <button
                     onClick={() => rimuovi(i)}
-                    className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-stone-800 text-white"
+                    className="absolute -right-2 -top-2 grid h-6 w-6 place-items-center rounded-full bg-emerald-900 text-white"
                     aria-label="Rimuovi"
                   >
                     <X size={14} />
@@ -141,7 +141,7 @@ export default function Home() {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               placeholder="Note opzionali: da quanto la hai, sintomi, ambiente (interno/esterno)…"
-              className="w-full resize-none rounded-xl border border-stone-200 bg-white p-3 text-sm outline-none focus:border-emerald-400"
+              className="w-full resize-none rounded-xl border border-emerald-100 bg-emerald-50 p-3 text-sm outline-none focus:border-emerald-400"
               rows={2}
             />
           )}
@@ -155,7 +155,7 @@ export default function Home() {
           <button
             onClick={identifica}
             disabled={foto.length === 0 || loading}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-stone-300"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-6 py-3 font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-200"
           >
             {loading ? (
               <>
@@ -175,7 +175,7 @@ export default function Home() {
           <PlantSheet scheda={scheda} foto={foto[0]} />
           <button
             onClick={ricomincia}
-            className="w-full rounded-full border border-stone-300 bg-white px-6 py-3 font-medium transition hover:bg-stone-100"
+            className="w-full rounded-full border border-emerald-200 bg-emerald-50 px-6 py-3 font-medium transition hover:bg-emerald-100"
           >
             Identifica un&apos;altra pianta
           </button>

@@ -26,7 +26,7 @@ const statoColore: Record<string, string> = {
   buono: "bg-lime-100 text-lime-800",
   sofferente: "bg-amber-100 text-amber-800",
   critico: "bg-red-100 text-red-800",
-  non_determinabile: "bg-stone-100 text-stone-600",
+  non_determinabile: "bg-emerald-100 text-emerald-700",
 };
 
 const gravitaColore: Record<string, string> = {
@@ -45,13 +45,13 @@ function Cura({
   testo: string;
 }) {
   return (
-    <div className="flex gap-3 rounded-xl border border-stone-200 bg-white p-3">
+    <div className="flex gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-3">
       <span className="mt-0.5 text-emerald-600">{icon}</span>
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-stone-700">
+        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">
           {titolo}
         </p>
-        <p className="text-sm text-stone-800">{testo}</p>
+        <p className="text-sm text-emerald-900">{testo}</p>
       </div>
     </div>
   );
@@ -95,7 +95,7 @@ export default function PlantSheet({
   return (
     <article className="space-y-6">
       {/* Intestazione */}
-      <header className="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+      <header className="overflow-hidden rounded-2xl border border-emerald-100 bg-emerald-50">
         {foto && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -114,26 +114,26 @@ export default function PlantSheet({
             >
               {scheda.statoSalute.replace("_", " ")}
             </span>
-            <span className="rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-600">
+            <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">
               confidenza {scheda.confidenza}
             </span>
           </div>
-          <p className="italic text-stone-700">
+          <p className="italic text-emerald-800">
             {scheda.nomeScientifico} · {scheda.famiglia}
           </p>
           {scheda.nomiAlternativi.length > 0 && (
-            <p className="text-sm text-stone-700">
+            <p className="text-sm text-emerald-800">
               Anche detta: {scheda.nomiAlternativi.join(", ")}
             </p>
           )}
-          <p className="text-sm text-stone-700">{scheda.descrizione}</p>
+          <p className="text-sm text-emerald-800">{scheda.descrizione}</p>
         </div>
       </header>
 
       {/* Diagnosi stato attuale */}
-      <section className="rounded-2xl border border-stone-200 bg-white p-4">
+      <section className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
         <h3 className="mb-2 font-semibold">Diagnosi dello stato attuale</h3>
-        <p className="text-sm text-stone-700">{scheda.diagnosi}</p>
+        <p className="text-sm text-emerald-800">{scheda.diagnosi}</p>
         {scheda.problemi.length > 0 && (
           <ul className="mt-3 space-y-2">
             {scheda.problemi.map((p, i) => (
@@ -141,16 +141,16 @@ export default function PlantSheet({
                 key={i}
                 className={`rounded-xl border p-3 ${gravitaColore[p.gravita]}`}
               >
-                <p className="flex items-center gap-2 text-sm font-semibold text-stone-800">
+                <p className="flex items-center gap-2 text-sm font-semibold text-emerald-900">
                   <AlertTriangle size={15} /> {p.titolo}
-                  <span className="ml-auto text-xs font-normal uppercase text-stone-700">
+                  <span className="ml-auto text-xs font-normal uppercase text-emerald-800">
                     {p.gravita}
                   </span>
                 </p>
-                <p className="mt-1 text-sm text-stone-600">
+                <p className="mt-1 text-sm text-emerald-700">
                   <strong>Causa:</strong> {p.causaProbabile}
                 </p>
-                <p className="mt-1 text-sm text-stone-700">
+                <p className="mt-1 text-sm text-emerald-800">
                   <strong>Rimedio:</strong> {p.rimedio}
                 </p>
               </li>
@@ -204,21 +204,21 @@ export default function PlantSheet({
 
       {/* Tossicita + stagione + curiosita */}
       <section className="grid gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl border border-stone-200 bg-white p-4">
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
           <h4 className="flex items-center gap-2 font-semibold">
             <Skull size={16} /> Tossicita
           </h4>
-          <p className="mt-1 text-sm text-stone-700">{scheda.tossicita}</p>
+          <p className="mt-1 text-sm text-emerald-800">{scheda.tossicita}</p>
         </div>
-        <div className="rounded-2xl border border-stone-200 bg-white p-4">
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
           <h4 className="font-semibold">Consigli stagionali</h4>
-          <p className="mt-1 text-sm text-stone-700">
+          <p className="mt-1 text-sm text-emerald-800">
             {scheda.consigliStagionali}
           </p>
         </div>
-        <div className="rounded-2xl border border-stone-200 bg-white p-4 sm:col-span-2">
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4 sm:col-span-2">
           <h4 className="font-semibold">Lo sapevi?</h4>
-          <p className="mt-1 text-sm text-stone-700">{scheda.curiosita}</p>
+          <p className="mt-1 text-sm text-emerald-800">{scheda.curiosita}</p>
         </div>
       </section>
 
@@ -226,7 +226,7 @@ export default function PlantSheet({
       {scheda.pianoCure.length > 0 && (
         <section className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
           <h3 className="font-semibold">Promemoria cure</h3>
-          <ul className="mt-2 space-y-1 text-sm text-stone-700">
+          <ul className="mt-2 space-y-1 text-sm text-emerald-800">
             {scheda.pianoCure.map((c, i) => (
               <li key={i}>
                 <strong>{c.attivita}</strong> — ogni {c.ogniGiorni} giorni ·{" "}

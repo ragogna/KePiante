@@ -19,12 +19,12 @@ function Sezione({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white p-4">
+    <section className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
       <h2 className="mb-2 flex items-center gap-2 font-semibold">
         <span className="text-emerald-600">{icon}</span>
         {titolo}
       </h2>
-      <div className="space-y-2 text-sm text-stone-800">{children}</div>
+      <div className="space-y-2 text-sm text-emerald-900">{children}</div>
     </section>
   );
 }
@@ -34,7 +34,7 @@ export default function ManualePage() {
     <div className="space-y-6">
       <header>
         <h1 className="text-2xl font-bold">Manuale d&apos;uso</h1>
-        <p className="text-stone-700">
+        <p className="text-emerald-800">
           Come usare KePiante per identificare e curare le tue piante.
         </p>
       </header>
@@ -46,7 +46,7 @@ export default function ManualePage() {
           immagini esistenti. Puoi aggiungere fino a <strong>5 foto</strong>{" "}
           della stessa pianta.
         </p>
-        <p className="text-stone-600">
+        <p className="text-emerald-700">
           Consiglio: inquadra foglie, portamento e, se possibile, terriccio e
           vaso. Foto nitide e ben illuminate = identificazione migliore.
         </p>
@@ -80,7 +80,7 @@ export default function ManualePage() {
           <strong>Promemoria</strong>. Da lì puoi segnare un&apos;attività come{" "}
           <em>fatta</em> (riparte il conteggio) o eliminarla.
         </p>
-        <p className="text-stone-600">
+        <p className="text-emerald-700">
           Le notifiche sono locali e arrivano quando l&apos;app è aperta. I
           promemoria restano salvati in questo browser/dispositivo.
         </p>
