@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { isAllowed } from "@/lib/allowlist-db";
+import { isOwner } from "@/lib/allowlist";
 import { db, pushServerConfigured } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
@@ -14,7 +15,10 @@ async function owner(id: string) {
   const doc = await db().collection("analisi").doc(id).get();
   if (!doc.exists) return { error: "Non trovata", status: 404 as const };
   const data = doc.data()!;
-  if (data.email !== email) return { error: "Non autorizzato", status: 401 as const };
+  // Il proprietario può accedere a qualsiasi analisi; gli altri solo alle proprie.
+  if (data.email !== email && !isOwner(email)) {
+    return { error: "Non autorizzato", status: 401 as const };
+  }
   return { doc, data };
 }
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { UserPlus, Trash2, Loader2, ShieldCheck, Lock } from "lucide-react";
+import Link from "next/link";
+import { UserPlus, Trash2, Loader2, ShieldCheck, Lock, Users } from "lucide-react";
 
 type Lista = { statiche: string[]; dinamiche: string[] };
 
@@ -79,6 +80,14 @@ export default function AdminPage() {
           Decidi chi può usare KePiante.
         </p>
       </div>
+
+      <Link
+        href="/admin/cronologia"
+        className="flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-900 hover:bg-emerald-100"
+      >
+        <Users size={18} className="text-emerald-600" /> Vedi le analisi di tutti
+        gli utenti
+      </Link>
 
       <form
         onSubmit={aggiungi}
