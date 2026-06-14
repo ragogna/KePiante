@@ -1,7 +1,7 @@
 // Versione visibile dell'app e storico modifiche (log).
 // Aggiorna VERSION e aggiungi una voce in cima a CHANGELOG ad ogni rilascio.
 
-export const VERSION = "0.7.0";
+export const VERSION = "0.8.0";
 
 export type VoceLog = {
   versione: string;
@@ -11,6 +11,15 @@ export type VoceLog = {
 };
 
 export const CHANGELOG: VoceLog[] = [
+  {
+    versione: "0.8.0",
+    data: "2026-06-14",
+    novita: [
+      "Cronologia analisi: le piante identificate vengono salvate e puoi riaprirle quando vuoi",
+      "Eliminazione di una analisi dalla cronologia",
+    ],
+    fix: [],
+  },
   {
     versione: "0.7.0",
     data: "2026-06-14",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { fileADataUrl } from "@/lib/image";
+import { fileADataUrl, dataUrlAMiniatura } from "@/lib/image";
 import { avviaScheduler } from "@/lib/reminders";
 import type { SchedaPianta } from "@/lib/schema";
 import PlantSheet from "@/components/PlantSheet";
@@ -52,10 +52,26 @@ export default function Home() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Errore sconosciuto");
       setScheda(data as SchedaPianta);
+      // Salva nella cronologia (best effort, non blocca l'utente).
+      void salvaInCronologia(data as SchedaPianta, foto[0]);
     } catch (e) {
       setErrore(e instanceof Error ? e.message : "Errore");
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function salvaInCronologia(s: SchedaPianta, primaFoto?: string) {
+    if (!s.identificata) return;
+    try {
+      const thumb = primaFoto ? await dataUrlAMiniatura(primaFoto) : "";
+      await fetch("/api/analisi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ scheda: s, thumb }),
+      });
+    } catch {
+      /* la cronologia è un extra: ignora gli errori */
     }
   }
 

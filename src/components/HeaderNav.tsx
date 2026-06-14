@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   Search,
   CalendarDays,
+  Clock,
   HelpCircle,
   BookOpen,
   ScrollText,
@@ -39,6 +40,14 @@ export default function HeaderNav() {
         aria-label="Promemoria"
       >
         <CalendarDays size={20} />
+      </Link>
+      <Link
+        href="/cronologia"
+        className={iconBtn}
+        title="Cronologia"
+        aria-label="Cronologia"
+      >
+        <Clock size={20} />
       </Link>
 
       <div className="relative" ref={ref}>
