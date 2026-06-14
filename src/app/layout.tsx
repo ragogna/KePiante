@@ -44,12 +44,12 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-emerald-100 text-emerald-950">
-        <header className="sticky top-0 z-10 border-b border-emerald-200 bg-emerald-100">
+        <header className="sticky top-0 z-10 border-b border-emerald-300 bg-emerald-200">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
             <Link href="/">
               <Logo />
             </Link>
-            <nav className="flex gap-3 text-sm sm:gap-4">
+            <nav className="flex gap-3 text-sm font-medium text-emerald-950 sm:gap-4">
               <Link href="/" className="hover:text-emerald-700">
                 Identifica
               </Link>
@@ -72,7 +72,7 @@ export default async function RootLayout({
                   <button
                     type="submit"
                     title={`Esci (${session.user.email})`}
-                    className="flex items-center gap-1 text-emerald-700 hover:text-emerald-900"
+                    className="flex items-center gap-1 text-emerald-950 hover:text-emerald-700"
                   >
                     <LogOut size={15} /> Esci
                   </button>

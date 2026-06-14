@@ -11,6 +11,7 @@ import {
 } from "@/lib/reminders";
 import { Check, Trash2, BellRing, CalendarClock } from "lucide-react";
 import Link from "next/link";
+import PushButton from "@/components/PushButton";
 
 function quando(ts: number): { testo: string; scaduto: boolean } {
   const giorni = Math.round((ts - Date.now()) / 86_400_000);
@@ -68,6 +69,8 @@ export default function PromemoriaPage() {
           </button>
         )}
       </div>
+
+      <PushButton />
 
       <ul className="space-y-3">
         {list.map((p) => {

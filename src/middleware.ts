@@ -16,7 +16,7 @@ export default auth((req) => {
 
 export const config = {
   matcher: [
-    // Tutto tranne: api/auth, pagina accesso, asset, file pubblici
-    "/((?!api/auth|accesso|_next/static|_next/image|favicon|icon|manifest|.*\\.(?:png|svg|webmanifest|ico|jpg|jpeg)).*)",
+    // Tutto tranne: api/auth, api/cron, pagina accesso, service worker, asset
+    "/((?!api/auth|api/cron|accesso|firebase-messaging-sw.js|_next/static|_next/image|favicon|icon|manifest|.*\\.(?:png|svg|webmanifest|ico|jpg|jpeg|js)).*)",
   ],
 };

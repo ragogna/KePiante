@@ -26,11 +26,11 @@ export default function Logo() {
           <Leaf size={20} />
         </span>
       )}
-      <span className="flex flex-col leading-tight">
+      <span className="flex flex-col leading-tight text-emerald-950">
         <span className="text-base">
-          Ke<span className="text-emerald-700">Piante</span>
+          Ke<span className="text-emerald-800">Piante</span>
         </span>
-        <span className="text-[11px] font-normal text-emerald-700">
+        <span className="text-[11px] font-medium text-emerald-800">
           v {VERSION}
         </span>
       </span>

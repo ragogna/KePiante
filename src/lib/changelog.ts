@@ -1,7 +1,7 @@
 // Versione visibile dell'app e storico modifiche (log).
 // Aggiorna VERSION e aggiungi una voce in cima a CHANGELOG ad ogni rilascio.
 
-export const VERSION = "0.4.0";
+export const VERSION = "0.5.0";
 
 export type VoceLog = {
   versione: string;
@@ -11,6 +11,14 @@ export type VoceLog = {
 };
 
 export const CHANGELOG: VoceLog[] = [
+  {
+    versione: "0.5.0",
+    data: "2026-06-14",
+    novita: [
+      "Notifiche push reali (Firebase) anche ad app chiusa, con invio giornaliero automatico",
+    ],
+    fix: ["Contrasto della barra superiore migliorato per leggibilità"],
+  },
   {
     versione: "0.4.0",
     data: "2026-06-14",
