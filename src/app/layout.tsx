@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { auth, signOut } from "@/auth";
+import { LogOut } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,11 +32,12 @@ export const viewport: Viewport = {
   themeColor: "#059669",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html
       lang="it"
@@ -59,6 +62,22 @@ export default function RootLayout({
               <Link href="/log" className="hover:text-emerald-700">
                 Log
               </Link>
+              {session?.user && (
+                <form
+                  action={async () => {
+                    "use server";
+                    await signOut({ redirectTo: "/accesso" });
+                  }}
+                >
+                  <button
+                    type="submit"
+                    title={`Esci (${session.user.email})`}
+                    className="flex items-center gap-1 text-emerald-700 hover:text-emerald-900"
+                  >
+                    <LogOut size={15} /> Esci
+                  </button>
+                </form>
+              )}
             </nav>
           </div>
         </header>

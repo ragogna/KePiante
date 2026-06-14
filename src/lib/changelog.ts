@@ -1,7 +1,7 @@
 // Versione visibile dell'app e storico modifiche (log).
 // Aggiorna VERSION e aggiungi una voce in cima a CHANGELOG ad ogni rilascio.
 
-export const VERSION = "0.3.0";
+export const VERSION = "0.4.0";
 
 export type VoceLog = {
   versione: string;
@@ -11,6 +11,16 @@ export type VoceLog = {
 };
 
 export const CHANGELOG: VoceLog[] = [
+  {
+    versione: "0.4.0",
+    data: "2026-06-14",
+    novita: [
+      "Accesso sicuro con account Google",
+      "Allowlist: solo le email autorizzate dal proprietario possono entrare",
+      "Logout dall'header",
+    ],
+    fix: [],
+  },
   {
     versione: "0.3.0",
     data: "2026-06-14",

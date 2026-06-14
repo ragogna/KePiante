@@ -2,6 +2,8 @@ import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 import { NextResponse } from "next/server";
 import { schedaPiantaSchema } from "@/lib/schema";
+import { auth } from "@/auth";
+import { isAllowed } from "@/lib/allowlist";
 
 // Fluid Compute: lasciamo respiro alla chiamata multimodale
 export const maxDuration = 120;
@@ -19,6 +21,15 @@ Sii concreto e pratico: chi legge vuole sapere ESATTAMENTE cosa fare oggi.
 Per pianoCure indica cadenze realistiche per il periodo attuale.`;
 
 export async function POST(req: Request) {
+  // Solo utenti autenticati e autorizzati.
+  const session = await auth();
+  if (!session?.user || !isAllowed(session.user.email)) {
+    return NextResponse.json(
+      { error: "Accesso non autorizzato" },
+      { status: 401 },
+    );
+  }
+
   if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
     return NextResponse.json(
       {
