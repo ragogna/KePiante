@@ -3,7 +3,7 @@ import { google } from "@ai-sdk/google";
 import { NextResponse } from "next/server";
 import { schedaPiantaSchema } from "@/lib/schema";
 import { auth } from "@/auth";
-import { isAllowed } from "@/lib/allowlist";
+import { isAllowed } from "@/lib/allowlist-db";
 
 // Fluid Compute: lasciamo respiro alla chiamata multimodale
 export const maxDuration = 120;
@@ -25,7 +25,7 @@ Compila rimediCasalinghi con 2-4 voci davvero pertinenti allo stato della pianta
 export async function POST(req: Request) {
   // Solo utenti autenticati e autorizzati.
   const session = await auth();
-  if (!session?.user || !isAllowed(session.user.email)) {
+  if (!session?.user || !(await isAllowed(session.user.email))) {
     return NextResponse.json(
       { error: "Accesso non autorizzato" },
       { status: 401 },

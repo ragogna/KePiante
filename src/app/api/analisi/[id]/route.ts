@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { isAllowed } from "@/lib/allowlist";
+import { isAllowed } from "@/lib/allowlist-db";
 import { db, pushServerConfigured } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 async function owner(id: string) {
   const session = await auth();
   const email = session?.user?.email;
-  if (!email || !isAllowed(email)) return { error: "Non autorizzato", status: 401 as const };
+  if (!email || !(await isAllowed(email))) return { error: "Non autorizzato", status: 401 as const };
   if (!pushServerConfigured())
     return { error: "Cronologia non configurata", status: 503 as const };
   const doc = await db().collection("analisi").doc(id).get();

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { isAllowed } from "@/lib/allowlist";
+import { isAllowed } from "@/lib/allowlist-db";
 import { db, pushServerConfigured } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   const session = await auth();
   const email = session?.user?.email;
-  if (!email || !isAllowed(email)) {
+  if (!email || !(await isAllowed(email))) {
     return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });
   }
   if (!pushServerConfigured()) {
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 export async function GET() {
   const session = await auth();
   const email = session?.user?.email;
-  if (!email || !isAllowed(email)) {
+  if (!email || !(await isAllowed(email))) {
     return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });
   }
   if (!pushServerConfigured()) {

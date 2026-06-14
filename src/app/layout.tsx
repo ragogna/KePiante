@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import HeaderNav from "@/components/HeaderNav";
 import { auth, signOut } from "@/auth";
+import { isOwner } from "@/lib/allowlist";
 import { LogOut } from "lucide-react";
 
 const geistSans = Geist({
@@ -51,7 +52,7 @@ export default async function RootLayout({
               <Logo />
             </Link>
             <div className="flex items-center gap-1">
-              <HeaderNav />
+              <HeaderNav owner={isOwner(session?.user?.email)} />
               {session?.user && (
                 <form
                   action={async () => {

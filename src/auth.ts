@@ -1,22 +1,14 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
-import { isAllowed } from "@/lib/allowlist";
+import { authConfig } from "@/auth.config";
+import { isAllowed } from "@/lib/allowlist-db";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  trustHost: true,
-  providers: [Google],
-  pages: {
-    signIn: "/accesso",
-    error: "/accesso",
-  },
+  ...authConfig,
   callbacks: {
-    // Blocca il login se l'email non è in allowlist.
-    signIn({ profile, user }) {
+    ...authConfig.callbacks,
+    // Blocca il login se l'email non è in allowlist (statica o dinamica).
+    async signIn({ profile, user }) {
       return isAllowed(profile?.email ?? user?.email);
-    },
-    // Usato dal middleware: autorizzato solo se loggato.
-    authorized({ auth }) {
-      return !!auth?.user;
     },
   },
 });

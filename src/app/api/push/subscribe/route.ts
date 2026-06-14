@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
-import { isAllowed } from "@/lib/allowlist";
+import { isAllowed } from "@/lib/allowlist-db";
 import { db, pushServerConfigured } from "@/lib/firebase-admin";
 
 export const runtime = "nodejs";
@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 // Salva (o aggiorna) il token push del dispositivo e i promemoria dell'utente.
 export async function POST(req: Request) {
   const session = await auth();
-  if (!session?.user || !isAllowed(session.user.email)) {
+  if (!session?.user || !(await isAllowed(session.user.email))) {
     return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });
   }
   if (!pushServerConfigured()) {

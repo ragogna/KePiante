@@ -9,12 +9,13 @@ import {
   HelpCircle,
   BookOpen,
   ScrollText,
+  ShieldCheck,
 } from "lucide-react";
 
 const iconBtn =
   "grid h-9 w-9 place-items-center rounded-full text-emerald-900 transition hover:bg-emerald-300/60";
 
-export default function HeaderNav() {
+export default function HeaderNav({ owner = false }: { owner?: boolean }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -77,6 +78,15 @@ export default function HeaderNav() {
             >
               <ScrollText size={16} /> Log
             </Link>
+            {owner && (
+              <Link
+                href="/admin"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2 border-t border-emerald-200 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-100"
+              >
+                <ShieldCheck size={16} /> Gestione accessi
+              </Link>
+            )}
           </div>
         )}
       </div>
