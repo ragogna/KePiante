@@ -6,7 +6,7 @@ const DEFAULT_ALLOWED = [
   "mz.bortolin@gmail.com",
   "ricky.ragogna@gmail.com",
   "zoe.ragogna@gmail.com",
-  "miriam.ragogna@gmail.com",
+  "m.ragogna@gmail.com",
   "gianfranco.ragogna@gmail.com",
 ];
 
