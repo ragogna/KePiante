@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Leaf } from "lucide-react";
 import { VERSION } from "@/lib/changelog";
 
-// Mostra il logo personalizzato dell'utente (public/logo.png, es. il tuo Tux).
-// Se il file manca, ripiega sull'icona a foglia. Versione sempre visibile.
+// Logo header: icona a foglia (fallback a public/logo.png se presente),
+// nome KePiante e, subito sotto, la versione in carattere più piccolo.
 export default function Logo() {
   const [logoOk, setLogoOk] = useState(true);
 
@@ -16,21 +16,23 @@ export default function Logo() {
         <img
           src="/logo.png"
           alt="Logo"
-          width={32}
-          height={32}
-          className="h-8 w-8 rounded-full object-contain"
+          width={36}
+          height={36}
+          className="h-9 w-9 rounded-full object-contain"
           onError={() => setLogoOk(false)}
         />
       ) : (
-        <span className="grid h-8 w-8 place-items-center rounded-full bg-emerald-600 text-white">
-          <Leaf size={18} />
+        <span className="grid h-9 w-9 place-items-center rounded-full bg-emerald-600 text-white">
+          <Leaf size={20} />
         </span>
       )}
-      <span>
-        Ke<span className="text-emerald-700">Piante</span>
-      </span>
-      <span className="rounded-full bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium text-emerald-800">
-        v{VERSION}
+      <span className="flex flex-col leading-tight">
+        <span className="text-base">
+          Ke<span className="text-emerald-700">Piante</span>
+        </span>
+        <span className="text-[11px] font-normal text-emerald-700">
+          v {VERSION}
+        </span>
       </span>
     </span>
   );

@@ -20,8 +20,8 @@ function Sezione({
 }) {
   return (
     <section className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
-      <h2 className="mb-2 flex items-center gap-2 font-semibold">
-        <span className="text-emerald-600">{icon}</span>
+      <h2 className="mb-2 flex items-center gap-2 font-semibold text-emerald-600">
+        <span>{icon}</span>
         {titolo}
       </h2>
       <div className="space-y-2 text-sm text-emerald-900">{children}</div>

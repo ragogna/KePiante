@@ -44,7 +44,7 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-emerald-100 text-emerald-950">
-        <header className="sticky top-0 z-10 border-b border-emerald-200 bg-emerald-100/80 backdrop-blur">
+        <header className="sticky top-0 z-10 border-b border-emerald-200 bg-emerald-100">
           <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
             <Link href="/">
               <Logo />
@@ -84,8 +84,22 @@ export default async function RootLayout({
         <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">
           {children}
         </main>
-        <footer className="border-t border-emerald-200 py-4 text-center text-xs text-emerald-800">
-          KePiante · identificazione e cura piante · foto non salvate sui server
+        <footer className="space-y-2 border-t border-emerald-200 py-4 text-center text-xs text-emerald-800">
+          <p>
+            KePiante · identificazione e cura piante · foto non salvate sui
+            server
+          </p>
+          <p className="flex items-center justify-center gap-2 font-medium">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/tux_k3kk0.png"
+              alt="Tux K3kk0"
+              width={20}
+              height={20}
+              className="h-5 w-5 object-contain"
+            />
+            Sviluppato da K3kk0
+          </p>
         </footer>
       </body>
     </html>
