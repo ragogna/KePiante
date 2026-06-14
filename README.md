@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌱 KèPiante
 
-## Getting Started
+App tipo *PictureThis*: scatti o carichi foto di una pianta → ricevi **scheda completa**, **diagnosi dello stato attuale** e **promemoria cure**. Tutto in italiano. Deploy su Vercel.
 
-First, run the development server:
+## Come funziona
+
+1. L'utente scatta o carica fino a 5 foto (compresse lato browser).
+2. `POST /api/identify` invia le foto a un modello vision tramite **Vercel AI Gateway**.
+3. Il modello restituisce una scheda strutturata (Zod) con identificazione, cure e diagnosi.
+4. L'utente può attivare i **promemoria cure**, salvati nel browser (localStorage) con notifiche locali.
+
+## Stack
+
+- Next.js 16 (App Router) + React 19 + TypeScript + Tailwind
+- AI SDK v6 (`generateObject`) via **Vercel AI Gateway** (modello Claude di default)
+- Nessun account, nessun DB: app stateless. Le foto **non** vengono salvate sui server.
+
+## Sviluppo locale
 
 ```bash
+npm install
+cp .env.example .env.local   # poi inserisci AI_GATEWAY_API_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`AI_GATEWAY_API_KEY` si crea dalla dashboard Vercel → **AI Gateway**. In alternativa, dopo aver linkato il progetto: `vercel env pull`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Modello configurabile con `AI_MODEL` (default `anthropic/claude-sonnet-4.5`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy su Vercel
 
-## Learn More
+```bash
+npm i -g vercel       # se non installata
+vercel link           # collega/crea il progetto
+vercel env add AI_GATEWAY_API_KEY   # aggiungi la chiave (Production + Preview)
+vercel deploy --prod
+```
 
-To learn more about Next.js, take a look at the following resources:
+Oppure: push su GitHub e importa il repo su vercel.com (imposta `AI_GATEWAY_API_KEY` nelle Environment Variables).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Limiti noti & evoluzioni
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Notifiche**: locali (Web Notifications), scattano solo con app aperta. Per push reali ad app chiusa serve un mini-DB (es. Neon) + Web Push subscription + **Vercel Cron**.
+- **Account/storico collezione**: aggiungibili con Clerk (auth) + Neon Postgres + Vercel Blob per le foto.
+- **Accuratezza**: per ID botanico certificato si può affiancare un'API dedicata (Plant.id / PlantNet) e usare il modello solo per la scheda cure.
