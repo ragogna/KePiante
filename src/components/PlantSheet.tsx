@@ -19,6 +19,7 @@ import {
   BellRing,
   Check,
   Skull,
+  Recycle,
 } from "lucide-react";
 
 const statoColore: Record<string, string> = {
@@ -201,6 +202,29 @@ export default function PlantSheet({
           />
         </div>
       </section>
+
+      {/* Rimedi casalinghi fai-da-te */}
+      {scheda.rimediCasalinghi?.length > 0 && (
+        <section className="rounded-2xl border border-lime-200 bg-lime-50 p-4">
+          <h3 className="flex items-center gap-2 font-semibold text-emerald-950">
+            <Recycle size={18} className="text-lime-600" /> Rimedi della nonna
+            (fai-da-te)
+          </h3>
+          <p className="mt-1 text-xs text-emerald-700">
+            Soluzioni con prodotti comuni di casa.
+          </p>
+          <ul className="mt-3 space-y-2">
+            {scheda.rimediCasalinghi.map((r, i) => (
+              <li key={i} className="text-sm text-emerald-900">
+                <span className="rounded-full bg-lime-200 px-2 py-0.5 text-xs font-semibold text-lime-900">
+                  {r.ingrediente}
+                </span>{" "}
+                {r.uso}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Tossicita + stagione + curiosita */}
       <section className="grid gap-3 sm:grid-cols-2">

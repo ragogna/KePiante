@@ -66,6 +66,22 @@ export const schedaPiantaSchema = z.object({
     potatura: z.string().describe("Indicazioni di potatura/pulizia foglie"),
   }),
 
+  // Rimedi fai-da-te con prodotti comuni di casa
+  rimediCasalinghi: z
+    .array(
+      z.object({
+        ingrediente: z
+          .string()
+          .describe("Prodotto comune di casa, es. 'Bicarbonato', 'Fondi di caffè'"),
+        uso: z
+          .string()
+          .describe("Come usarlo per questa pianta, con dosi/frequenza pratiche"),
+      }),
+    )
+    .describe(
+      "2-4 rimedi/cure casalinghi pertinenti allo stato attuale della pianta",
+    ),
+
   // Piano cure ricorrenti, usato per i promemoria
   pianoCure: z
     .array(curaRicorrenteSchema)

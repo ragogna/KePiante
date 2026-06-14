@@ -18,7 +18,9 @@ Identifica la specie e compila una scheda completa in ITALIANO.
 Analizza con attenzione foglie, colore, portamento, terriccio e vaso per dedurre lo stato di salute attuale e i problemi reali visibili (ingiallimenti, macchie, parassiti, marciumi, stress idrico).
 Se nelle foto non c'e una pianta riconoscibile, imposta identificata=false e lascia gli altri campi con valori generici brevi.
 Sii concreto e pratico: chi legge vuole sapere ESATTAMENTE cosa fare oggi.
-Per pianoCure indica cadenze realistiche per il periodo attuale.`;
+Per pianoCure indica cadenze realistiche per il periodo attuale.
+PRIVILEGIA rimedi e cure con prodotti comuni di casa (bicarbonato, aceto, succo di limone, fondi di caffè, sapone molle/di Marsiglia, olio di neem o vegetale, cannella, gusci d'uovo, acqua di cottura non salata, ortica/macerati): suggeriscili nei campi rimedio, concimazione e antiparassitari quando ha senso, con dosi pratiche.
+Compila rimediCasalinghi con 2-4 voci davvero pertinenti allo stato della pianta. Resta sicuro: niente misture pericolose o tossiche, e segnala se una pianta è sensibile a un rimedio.`;
 
 export async function POST(req: Request) {
   // Solo utenti autenticati e autorizzati.

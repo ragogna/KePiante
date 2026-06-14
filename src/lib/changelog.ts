@@ -1,7 +1,7 @@
 // Versione visibile dell'app e storico modifiche (log).
 // Aggiorna VERSION e aggiungi una voce in cima a CHANGELOG ad ogni rilascio.
 
-export const VERSION = "0.6.0";
+export const VERSION = "0.7.0";
 
 export type VoceLog = {
   versione: string;
@@ -11,6 +11,14 @@ export type VoceLog = {
 };
 
 export const CHANGELOG: VoceLog[] = [
+  {
+    versione: "0.7.0",
+    data: "2026-06-14",
+    novita: [
+      "Rimedi della nonna: cure fai-da-te con prodotti comuni di casa (bicarbonato, aceto, limone, fondi di caffè...)",
+    ],
+    fix: ["Notifiche push doppie risolte; tap sulla notifica apre l'app"],
+  },
   {
     versione: "0.6.0",
     data: "2026-06-14",
