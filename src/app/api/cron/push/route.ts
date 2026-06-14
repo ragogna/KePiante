@@ -8,10 +8,10 @@ const GIORNO = 86_400_000;
 
 // Eseguito da Vercel Cron: invia push per le cure scadute e riprogramma.
 export async function GET(req: Request) {
+  // Vercel Cron invia automaticamente "Authorization: Bearer $CRON_SECRET".
   const secret = process.env.CRON_SECRET;
   const authHeader = req.headers.get("authorization");
-  const isVercelCron = req.headers.get("x-vercel-cron");
-  if (secret && authHeader !== `Bearer ${secret}` && !isVercelCron) {
+  if (!secret || authHeader !== `Bearer ${secret}`) {
     return NextResponse.json({ error: "Non autorizzato" }, { status: 401 });
   }
   if (!pushServerConfigured()) {
