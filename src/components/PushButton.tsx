@@ -41,11 +41,14 @@ export default function PushButton() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, reminders }),
       });
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.error ?? `HTTP ${res.status}`);
+      }
       setStato("ok");
-    } catch {
+    } catch (e) {
       setStato("err");
-      setMsg("Errore durante l'attivazione. Riprova.");
+      setMsg(e instanceof Error ? e.message : "Errore sconosciuto");
     }
   }
 
