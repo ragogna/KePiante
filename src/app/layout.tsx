@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import HeaderNav from "@/components/HeaderNav";
 import { auth, signOut } from "@/auth";
 import { LogOut } from "lucide-react";
 
@@ -45,23 +46,12 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-emerald-100 text-emerald-950">
         <header className="sticky top-0 z-10 border-b border-emerald-300 bg-emerald-200">
-          <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-            <Link href="/">
+          <div className="mx-auto flex max-w-3xl items-center justify-between gap-2 px-4 py-3">
+            <Link href="/" className="shrink-0">
               <Logo />
             </Link>
-            <nav className="flex gap-3 text-sm font-medium text-emerald-950 sm:gap-4">
-              <Link href="/" className="hover:text-emerald-700">
-                Identifica
-              </Link>
-              <Link href="/promemoria" className="hover:text-emerald-700">
-                Promemoria
-              </Link>
-              <Link href="/manuale" className="hover:text-emerald-700">
-                Manuale
-              </Link>
-              <Link href="/log" className="hover:text-emerald-700">
-                Log
-              </Link>
+            <div className="flex items-center gap-1">
+              <HeaderNav />
               {session?.user && (
                 <form
                   action={async () => {
@@ -72,13 +62,14 @@ export default async function RootLayout({
                   <button
                     type="submit"
                     title={`Esci (${session.user.email})`}
-                    className="flex items-center gap-1 text-emerald-950 hover:text-emerald-700"
+                    aria-label="Esci"
+                    className="grid h-9 w-9 place-items-center rounded-full text-emerald-900 transition hover:bg-emerald-300/60"
                   >
-                    <LogOut size={15} /> Esci
+                    <LogOut size={20} />
                   </button>
                 </form>
               )}
-            </nav>
+            </div>
           </div>
         </header>
         <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-6">

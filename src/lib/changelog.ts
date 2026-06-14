@@ -1,7 +1,7 @@
 // Versione visibile dell'app e storico modifiche (log).
 // Aggiorna VERSION e aggiungi una voce in cima a CHANGELOG ad ogni rilascio.
 
-export const VERSION = "0.5.0";
+export const VERSION = "0.6.0";
 
 export type VoceLog = {
   versione: string;
@@ -11,6 +11,18 @@ export type VoceLog = {
 };
 
 export const CHANGELOG: VoceLog[] = [
+  {
+    versione: "0.6.0",
+    data: "2026-06-14",
+    novita: [
+      "Barra superiore ridisegnata a icone: lente (Identifica), calendario (Promemoria), menu ? (Manuale e Log)",
+    ],
+    fix: [
+      "Sfondo nero in dark mode corretto: tema chiaro forzato",
+      "Logo header non si caricava: ora icona a foglia",
+      "Voci di menu troppo vicine: spaziatura sistemata",
+    ],
+  },
   {
     versione: "0.5.0",
     data: "2026-06-14",
